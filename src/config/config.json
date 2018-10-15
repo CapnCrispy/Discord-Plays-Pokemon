@@ -1,28 +1,45 @@
 { "MainConfig": {
-	"ButtonMapping" : {
-		"ButtonCommandAliases" : [
-			"Start",
-			"Select",
-			"MoveUp",
-			"MoveDown",
-			"MoveLeft",
-			"MoveRight",
-			"L",
-			"R",
-			"A",
-			"B"
-		],
-		"ButtonEmulatorKeys" : [
-			"enter",
-			"backspace",
-			"up",
-			"down",
-			"left",
-			"right",
-			"q",
-			"e",
-			"x",
-			"z"
-		]
-	}
+	"ButtonMap" : [
+		{
+			"Aliases" : ["Start"],
+			"keystroke" : "enter"
+		},
+		{
+			"Aliases" : ["Select"],
+			"keystroke" : "backspace"
+		},
+		{
+			"Aliases" : ["MoveUp"],
+			"keystroke" : "up"
+		},
+		{
+			"Aliases" : ["MoveDown"],
+			"keystroke" : "down"
+		},
+		{
+			"Aliases" : ["MoveLeft"],
+			"keystroke" : "left"
+		},
+		{
+			"Aliases" : ["MoveRight"],
+			"keystroke" : "right"
+		},
+		{
+			"Aliases" : ["L"],
+			"keystroke" : "q"
+		},
+		{
+			"Aliases" : ["R"],
+			"keystroke" : "e"
+		},
+		{
+			"Aliases" : ["A"],
+			"keystroke" : "x"
+		},
+		{
+			"Aliases" : ["B"],
+			"keystroke" : "z"
+		}
+	]
+	
 }}

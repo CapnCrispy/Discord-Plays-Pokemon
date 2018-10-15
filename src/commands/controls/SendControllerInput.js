@@ -2,8 +2,7 @@
 const config = require('../../config/config.json');
 const commando = require('discord.js-commando');
 var robot = require('robotjs');
-//var fs = require('fs');
-//var config = JSON.parse(fs.readFileSync('../../config/config.json', 'utf8'));
+
 module.exports = class SendControllerInputCommand extends commando.Command {
   constructor(client) {
     super(client, {
@@ -27,24 +26,27 @@ module.exports = class SendControllerInputCommand extends commando.Command {
 			  prompt: 'Enter a controller button.',
 			  type: 'string',
 			  infinite: false,
-			  //validate: //function to validate that argument is a valid button input, as defined by config file (/src/conf.json).
 		  }
 	  ]
     });
   }
 
   async run(message, args) {
-	var btn = args.btn;
-	if(config.MainConfig.ButtonMapping.ButtonCommandAliases.indexOf(btn) > -1){
+	var btnArg = args.btn;
+	let buttonToPress = config.MainConfig.ButtonMap.filter((item) => {
+		return item.Aliases.includes(btnArg);
+	})[0];
+	
+	if(buttonToPress){ //checks for valid button input, as defined by config file (/src/config/conf.json).
 		console.log("Alias match!");
-		console.log("Alias: " + config.MainConfig.ButtonMapping.ButtonCommandAliases.btn);
-		console.log("Keypress: " + config.MainConfig.ButtonMapping.ButtonEmulatorKeys[config.MainConfig.ButtonMapping.ButtonCommandAliases.indexOf(btn)]);
-		robot.keyTap(config.MainConfig.ButtonMapping.ButtonEmulatorKeys[config.MainConfig.ButtonMapping.ButtonCommandAliases.indexOf(btn)]); //send keyboard input.
+		console.log("Alias: " + buttonToPress.Aliases);
+		console.log("Keypress: " + buttonToPress.keystroke);
+		robot.keyTap(buttonToPress.keystroke); //send keyboard input.
 	}else{
-		console.log("Invalid alias. btn: " + btn);
+		console.log("Invalid alias. btn: " + btnArg);
 		
 	}
 	
-	console.log("Command Recieved! Args: " + args.btn);
+	console.log("Command Recieved! Args: " + btnArg);
   }
 };
